@@ -15,5 +15,5 @@ docker login argocd-study.kr.ncr.ntruss.com
 
 ### Run
 ```shell
-docker run -p 8080:8080 argocd-study.kr.ncr.ntruss.com/argocd-study:0.0.2
+docker run -p 8080:8080 argocd-study.kr.ncr.ntruss.com/argocd-study:0.0.1
 ```
