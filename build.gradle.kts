@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
+    id("com.google.cloud.tools.jib") version "3.2.1"
 }
 
 group = "kr.mashup.argocd"
@@ -32,4 +33,18 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+
+jib {
+    from {
+        image = "adoptopenjdk/openjdk11:alpine-jre"
+    }
+    to {
+        image = "argocd-study.kr.ncr.ntruss.com/argocd-study"
+        tags = setOf(System.getProperty("tags", "image"))
+    }
+    container {
+        ports = listOf("8080")
+    }
 }
